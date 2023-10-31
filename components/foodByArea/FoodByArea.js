@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, View, Pressable, Text, RefreshControl } from "react-native";
+import { FlatList, StyleSheet, View, Pressable, Text, RefreshControl, Dimensions } from "react-native";
 import { useCallback, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import FoodImages from "../../assets/imagesFuntions/FoodImages";
@@ -22,27 +22,6 @@ const provinceList = [
     { id: 13, name: 'Bình Định' },
     { id: 14, name: 'Phú Yên' },
     { id: 15, name: 'Khánh Hòa' },
-];
-const vietnameseFoods = [
-    { id: 1, prId: 1, name: 'Phở', rate: 5, likedHealth: true, numberLike: 999, level: 4, imageUri: '', },
-    { id: 2, prId: 1, name: 'Bánh Mì', rate: 5, likedHealth: true, numberLike: 800, level: 1, imageUri: '', },
-    { id: 3, prId: 1, name: 'Bún Riêu Cua', rate: 4, likedHealth: false, numberLike: 100, level: 3, imageUri: '', },
-    { id: 4, prId: 4, name: 'Gỏi Cuốn', rate: 4.5, likedHealth: false, numberLike: 250, level: 2, imageUri: '', },
-    { id: 5, prId: 2, name: 'Cơm Gà Hải Nam', rate: 3, likedHealth: false, numberLike: 400, level: 3, imageUri: '', },
-    { id: 6, prId: 1, name: 'Bún Chả Hà Nội', rate: 5, likedHealth: true, numberLike: 632, level: 3, imageUri: '', },
-    { id: 7, prId: 8, name: 'Bánh Cuốn', rate: 4, likedHealth: true, numberLike: 900, level: 4, imageUri: '', },
-    { id: 8, prId: 2, name: 'Bánh Xèo', rate: 3, likedHealth: false, numberLike: 700, level: 2, imageUri: '', },
-    { id: 9, prId: 10, name: 'Bún Bò Huế', rate: 4, likedHealth: false, numberLike: 789, level: 3, imageUri: '', },
-    { id: 10, prId: 11, name: 'Hủ tiếu Nam Vang', rate: 3.5, likedHealth: false, numberLike: 489, level: 3, imageUri: '', },
-    { id: 11, prId: 10, name: 'Bánh Canh Cua', rate: 3, likedHealth: false, numberLike: 142, level: 3, imageUri: '', },
-    { id: 12, prId: 1, name: 'Bún Thịt Nướng', rate: 3.4, likedHealth: true, numberLike: 456, level: 3, imageUri: '', },
-    { id: 13, prId: 2, name: 'Cơm Tấm', rate: 2.7, likedHealth: false, numberLike: 125, level: 2, imageUri: '', },
-    { id: 14, prId: 1, name: 'Bún Bò Nam Bộ', rate: 4.3, likedHealth: false, numberLike: 951, level: 3, imageUri: '', },
-    { id: 15, prId: 12, name: 'Bánh Mì Kẹp Thịt', rate: 4.6, likedHealth: true, numberLike: 648, level: 1, imageUri: '', },
-    { id: 16, prId: 14, name: 'Bánh Mì Hòa Mã', rate: 4.1, likedHealth: false, numberLike: 124, level: 1, imageUri: '', },
-    { id: 17, prId: 2, name: 'Bánh Mì Chảo', rate: 4.4, likedHealth: false, numberLike: 466, level: 2, imageUri: '', },
-    { id: 18, prId: 1, name: 'Chả Cá Lã Vọng', rate: 2, likedHealth: false, numberLike: 752, level: 2, imageUri: '', },
-    { id: 20, prId: 2, name: 'Bún Mắm', rate: 1.1, likedHealth: false, numberLike: 369, level: 1, imageUri: '', },
 ];
 const topicFoodList = [
     { id: 1, topic1: true, topic2: false, topic3: false, topic4: false, topic5: false, topic6: false, topic7: true },
@@ -101,7 +80,7 @@ const FoodItem = ({ item }) => {
                         }
                     )
                 }}>
-                    <FoodImages imageUri={image} width={170} height={96} />
+                    <FoodImages imageUri={image} width={Dimensions.get('window').width * 0.45} height={Dimensions.get('window').width * 0.25} />
                 </Pressable>
                 <View style={styles.foodInfo}>
                     <View style={styles.foodLike}>
@@ -133,7 +112,7 @@ function FoodByArea(props) {
     const [refreshing, setRefreshing] = useState(false);
     const [seclectedIdPr, setselectedIdPr] = useState(1);
     // let listFoodRenderTopic = vietnameseFoods.filter(food => food.prId == seclectedIdPr).filter(food => topicFoodList[food.id][`topic${props.topicActive}`]);
-    let listFoodRenderTopic = vietnameseFoods.filter(food => food.prId == seclectedIdPr).filter(food => {
+    let listFoodRenderTopic = props.vietnameseFoods.filter(food => food.prId == seclectedIdPr).filter(food => {
         const topicData = topicFoodList[food.id];
         return topicData && topicData[`topic${props.topicActive}`];
     });

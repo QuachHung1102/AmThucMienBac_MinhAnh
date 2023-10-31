@@ -172,6 +172,7 @@ const styles = StyleSheet.create({
     },
     modalFoodContent: {
         padding: 12,
+        height: "95%",
     },
     foodItem: {
         width: '48%',
