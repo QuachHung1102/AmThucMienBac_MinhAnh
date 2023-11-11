@@ -153,7 +153,7 @@ function SettingsScreen(props) {
                                     placeholder="Your message!"
                                     // onChangeText={messageInputHandler}
                                     defaultValue={"Bạn cần giúp gì?"}
-                                    value=""
+                                    // value={messageInputHandler}
                                     textAlign="center"
                                     underlineColorAndroid='transparent'
                                 >

@@ -79,6 +79,7 @@ function FoodModal(props) {
             animationType="slide"
             transparent={true}
             visible={props.visible}
+            onRequestClose={() => props.onPress(false)}
         >
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
