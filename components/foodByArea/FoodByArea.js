@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, View, Pressable, Text, RefreshControl, Dimensions } from "react-native";
+import { FlatList, StyleSheet, View, Pressable, Text, RefreshControl, Dimensions, Image } from "react-native";
 import { useCallback, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import FoodImages from "../../assets/imagesFuntions/FoodImages";
