@@ -97,6 +97,7 @@ function FoodModal(props) {
                             </Pressable>) :
                             (<Pressable onPress={() => {
                                 props.onPress(false);
+                                setProvinceActive(1);
                             }}>
                                 <SvgClose />
                             </Pressable>)
